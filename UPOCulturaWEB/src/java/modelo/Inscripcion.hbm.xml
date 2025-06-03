@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2025 18:01:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Inscripcion" table="inscripcion" catalog="upocultura" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="evento" class="modelo.Evento" fetch="select">
+            <column name="id_evento" />
+        </many-to-one>
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+            <column name="id_usuario" />
+        </many-to-one>
+        <property name="fechaInscripcion" type="date">
+            <column name="fecha_inscripcion" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

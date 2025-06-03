@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2025 18:01:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Organizador" table="organizador" catalog="upocultura" optimistic-lock="version" lazy="false">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="join" lazy="false">
+            <column name="id_usuario" />
+        </many-to-one>
+        <set name="eventos" table="evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_organizador" />
+            </key>
+            <one-to-many class="modelo.Evento" />
+        </set>
+    </class>
+</hibernate-mapping>

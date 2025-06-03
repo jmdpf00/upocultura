@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2025 18:01:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuario" table="usuario" catalog="upocultura" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" unique="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="11" />
+        </property>
+        <property name="fechaRegistro" type="date">
+            <column name="fecha_registro" length="10" />
+        </property>
+        <set name="notificacions" table="notificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.Notificacion" />
+        </set>
+        <set name="solicitudVoluntariados" table="solicitud_voluntariado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.SolicitudVoluntariado" />
+        </set>
+        <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.Comentario" />
+        </set>
+        <set name="inscripcions" table="inscripcion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.Inscripcion" />
+        </set>
+        <set name="publicacions" table="publicacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.Publicacion" />
+        </set>
+        <set name="organizadors" table="organizador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.Organizador" />
+        </set>
+    </class>
+</hibernate-mapping>

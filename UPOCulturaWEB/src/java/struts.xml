@@ -1,0 +1,43 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="registroForm" class="controlador.RegistrarUsuarioAction" method="form">
+            <result>/registro.jsp</result>
+        </action>
+
+        <action name="loginForm">
+            <result>/login.jsp</result>
+        </action>
+        
+        <action name="registro" class="controlador.RegistrarUsuarioAction">
+            <result name="input">/registro.jsp</result>
+            <result name="success">/login.jsp</result>
+        </action>
+        
+        <action name="login" class="controlador.LoginUsuarioAction">
+            <result name="success" type="redirectAction">principal</result>
+            <result name="input">/login.jsp</result>
+        </action>
+
+        <action name="logout" class="controlador.LogoutAction">
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="principal" class="controlador.PrincipalAction">
+            <result>/principal.jsp</result>
+        </action>
+        
+        <action name="crearEventoForm">
+            <result>/crearEvento.jsp</result>
+        </action>
+        
+        <action name="crearEvento" class="controlador.CrearEventoAction">
+            <result name="success" type="redirectAction">principal</result>
+            <result name="input">/crearEvento.jsp</result>
+        </action>
+    </package>
+</struts>

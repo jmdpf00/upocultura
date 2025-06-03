@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2025 18:01:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Evento" table="evento" catalog="upocultura" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="organizador" class="modelo.Organizador" fetch="select">
+            <column name="id_organizador" />
+        </many-to-one>
+        <property name="titulo" type="string">
+            <column name="titulo" length="150" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="65535" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="150" />
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="fecha_inicio" length="10" />
+        </property>
+        <property name="fechaFin" type="date">
+            <column name="fecha_fin" length="10" />
+        </property>
+        <property name="plazas" type="java.lang.Integer">
+            <column name="plazas" />
+        </property>
+        <set name="solicitudVoluntariados" table="solicitud_voluntariado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_evento" />
+            </key>
+            <one-to-many class="modelo.SolicitudVoluntariado" />
+        </set>
+        <set name="inscripcions" table="inscripcion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_evento" />
+            </key>
+            <one-to-many class="modelo.Inscripcion" />
+        </set>
+    </class>
+</hibernate-mapping>
