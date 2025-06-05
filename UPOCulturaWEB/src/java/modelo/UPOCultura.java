@@ -90,11 +90,45 @@ public class UPOCultura {
         return lista.isEmpty() ? null : lista.get(0);
     }
 
+    // Metodo que obtiene un evento por su ID
+    public Evento obtenerEventoPorId(int id) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("FROM Evento WHERE id = :id");
+        q.setParameter("id", id);
+        List<Evento> resultados = q.list();
+        s.close();
+        return resultados.isEmpty() ? null : resultados.get(0);
+    }
 
+    // Metodo para actualizar un evento
+    public boolean actualizarEvento(Evento evento) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        Query q = s.createQuery("UPDATE Evento SET titulo = :titulo, descripcion = :descripcion, ubicacion = :ubicacion, fechaInicio = :fechaInicio, fechaFin = :fechaFin, plazas = :plazas WHERE id = :id");
+        q.setParameter("titulo", evento.getTitulo());
+        q.setParameter("descripcion", evento.getDescripcion());
+        q.setParameter("ubicacion", evento.getUbicacion());
+        q.setParameter("fechaInicio", evento.getFechaInicio());
+        q.setParameter("fechaFin", evento.getFechaFin());
+        q.setParameter("plazas", evento.getPlazas());
+        q.setParameter("id", evento.getId());
+        int filas = q.executeUpdate();
+        tx.commit();
+        s.close();
+        return filas > 0;
+    }
 
-
-
-
+    // Metodo para eliminar un evento
+    public boolean eliminarEvento(int id) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        Query q = s.createQuery("DELETE FROM Evento WHERE id = :id");
+        q.setParameter("id", id);
+        int filas = q.executeUpdate();
+        tx.commit();
+        s.close();
+        return filas > 0;
+    }
 
 
 }

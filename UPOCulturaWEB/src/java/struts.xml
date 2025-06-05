@@ -39,5 +39,19 @@
             <result name="success" type="redirectAction">principal</result>
             <result name="input">/crearEvento.jsp</result>
         </action>
+        
+        <action name="modificarEventoForm" class="controlador.ModificarEventoAction" method="form">
+            <result>/modificarEvento.jsp</result>
+        </action>
+        
+        <action name="modificarEvento" class="controlador.ModificarEventoAction">
+            <result name="success" type="redirectAction">principal</result>
+            <result name="input">/modificarEvento.jsp</result>
+        </action>
+        
+        <action name="eliminarEvento" class="controlador.EliminarEventoAction">
+            <result name="success" type="redirectAction">principal</result>
+        </action>
+        
     </package>
 </struts>
