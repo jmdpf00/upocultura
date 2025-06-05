@@ -53,5 +53,14 @@
             <result name="success" type="redirectAction">principal</result>
         </action>
         
+        <action name="crearPublicacionForm">
+            <result>/crearPublicacion.jsp</result>
+        </action>
+        
+        <action name="crearPublicacion" class="controlador.CrearPublicacionAction">
+            <result name="success" type="redirectAction">principal</result>
+            <result name="input">/crearPublicacion.jsp</result>
+        </action>
+        
     </package>
 </struts>

@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/modificarEvento.jsp</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/modelo/UPOCultura.java</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/principal.jsp</file>
-            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/ModificarEventoAction.java</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/CrearPublicacionAction.java</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/crearEvento.jsp</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/CrearEventoAction.java</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/crearPublicacion.jsp</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/PrincipalAction.java</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/struts.xml</file>
         </group>
     </open-files>

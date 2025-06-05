@@ -54,6 +54,32 @@
         </table>
 
         <br/>
+        <h2>Listado de Publicaciones</h2>
+        <%-- Mostrar botón solo si el usuario es organizador --%>
+        <s:if test="#session.usuario.tipo == 'organizador'">
+            <s:form action="crearPublicacionForm">
+                <s:submit value="Crear nueva publicacion" />
+            </s:form>
+        </s:if>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Contenido</th>
+                    <th>Fecha Publicacion</th>
+            </thead>
+            <tbody>
+                <s:iterator value="listaPublicaciones">
+                    <tr>
+                        <td><s:property value="titulo" /></td>
+                        <td><s:property value="contenido" /></td>
+                        <td><s:property value="fechaPublicacion" /></td>
+                    </tr>
+                </s:iterator>
+            </tbody>
+        </table>
+        
         <s:form action="logout">
             <s:submit value="Cerrar Sesión"/>
         </s:form>

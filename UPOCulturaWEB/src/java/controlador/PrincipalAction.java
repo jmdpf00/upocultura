@@ -8,6 +8,7 @@ package controlador;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import modelo.Evento;
+import modelo.Publicacion;
 import modelo.UPOCultura;
 
 /**
@@ -17,19 +18,24 @@ import modelo.UPOCultura;
 public class PrincipalAction extends ActionSupport {
     
     private List<Evento> listaEventos;
+    private List<Publicacion> listaPublicaciones;
     private UPOCultura upoCultura = new UPOCultura();
     
     public PrincipalAction() {
     }
     
     public String execute() throws Exception {
-        UPOCultura upo = new UPOCultura();
         listaEventos = upoCultura.obtenerTodosEventos();
+        listaPublicaciones = upoCultura.obtenerTodasPublicaciones();
         return SUCCESS;
     }
 
     public List<Evento> getListaEventos() {
         return listaEventos;
+    }
+
+    public List<Publicacion> getListaPublicaciones() {
+        return listaPublicaciones;
     }
     
     

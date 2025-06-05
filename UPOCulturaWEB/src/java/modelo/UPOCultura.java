@@ -129,6 +129,39 @@ public class UPOCultura {
         s.close();
         return filas > 0;
     }
+    
+    // Metodo para obtener todas las publicaciones registradas
+    public List<Publicacion> obtenerTodasPublicaciones() {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("FROM Publicacion");
+        List<Publicacion> publicaciones = q.list();
+        s.close();
+        return publicaciones;
+    }
+
+    // Metodo para crear una nueva publicacion
+    public void crearPublicacion(Publicacion publicacion) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        s.save(publicacion);
+        tx.commit();
+        s.close();
+    }
+    
+    // Metodo para obtener un usuario a traves su ID
+    public Usuario obtenerUsuarioPorId(int userId) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        String hql = "FROM modelo.Usuario u WHERE u.id = :userId";
+        Query query = s.createQuery(hql);
+        query.setParameter("userId", userId);
+        Usuario usuario = (Usuario) query.uniqueResult();
+        s.close();
+        return usuario;
+    }
+
+
+
+
 
 
 }
