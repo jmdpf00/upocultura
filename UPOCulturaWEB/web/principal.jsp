@@ -75,6 +75,22 @@
                                 </s:if>
                             </td>
                         </s:if>
+                            <s:if test="#session.usuario.tipo == 'asistente'">
+                                <td>
+                                    <s:if test="eventosInscritos.contains(id)">
+                                        <span>Ya estás inscrito</span>
+                                    </s:if>
+                                    <s:elseif test="plazas > 0">
+                                        <s:form action="inscripcionEvento" method="POST" theme="simple">
+                                            <s:hidden name="id" value="%{id}" />
+                                            <s:submit value="Inscribirse"/>
+                                        </s:form>
+                                    </s:elseif>
+                                    <s:else>
+                                        <span>Plazas agotadas</span>
+                                    </s:else>
+                                </td>
+                            </s:if>
                     </tr>
                 </s:iterator>
             </tbody>

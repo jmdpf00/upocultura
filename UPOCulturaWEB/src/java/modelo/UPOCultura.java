@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -278,7 +279,50 @@ public class UPOCultura {
         }
     }
 
+    public boolean estaInscrito(int idUsuario, int idEvento) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "SELECT COUNT(*) FROM Inscripcion i WHERE i.usuario.id = :idUsuario AND i.evento.id = :idEvento";
+            Query q = s.createQuery(hql);
+            q.setParameter("idUsuario", idUsuario);
+            q.setParameter("idEvento", idEvento);
+            return (Long) q.uniqueResult() > 0;
+        } finally {
+            s.close();
+        }
+    }
+    
+    public void inscribirAsistente(int idUsuario, int idEvento) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        try {
+            Usuario u = (Usuario)s.get(Usuario.class, idUsuario);
+            Evento e = (Evento)s.get(Evento.class, idEvento);
+            Inscripcion insc = new Inscripcion();
+            insc.setUsuario(u);
+            insc.setEvento(e);
+            insc.setFechaInscripcion(new Date());
+            s.save(insc);
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+            throw ex;
+        } finally {
+            s.close();
+        }
+    }
 
+    public List<Integer> obtenerIDsEventoInscritosPorUsuario(int idUsuario) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "SELECT i.evento.id FROM Inscripcion i WHERE i.usuario.id = :idUsuario";
+            Query q = s.createQuery(hql);
+            q.setParameter("idUsuario", idUsuario);
+            return q.list();
+        } finally {
+            s.close();
+        }
+    }
 
 
 }

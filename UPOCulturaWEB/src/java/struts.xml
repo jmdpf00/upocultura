@@ -83,5 +83,9 @@
             <result type="redirectAction">principal</result>
         </action>
         
+        <action name="inscripcionEvento" class="controlador.InscripcionEventoAction">
+            <result name="success" type="redirectAction">principal</result>
+        </action>
+        
     </package>
 </struts>

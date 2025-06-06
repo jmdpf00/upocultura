@@ -28,6 +28,8 @@ public class PrincipalAction extends ActionSupport implements SessionAware {
     private List<Publicacion> listaPublicaciones;
     private List<Integer> eventosSolicitados; // lista de los ids de los eventos solicitados por el usuario
     private List<String> mensajesSeleccionVoluntario;
+    private List<Integer> eventosInscritos; // eventos a los que se han inscrito como asistente
+
 
     private UPOCultura upoCultura = new UPOCultura();
 
@@ -42,7 +44,9 @@ public class PrincipalAction extends ActionSupport implements SessionAware {
         Usuario usuario = (Usuario) session.get("usuario");
         if (usuario != null) {
             eventosSolicitados = upoCultura.obtenerIDsEventoPorUsuario(usuario.getId());
+            eventosInscritos = upoCultura.obtenerIDsEventoInscritosPorUsuario(usuario.getId());
 
+            
             List<SolicitudVoluntariado> solicitudesAprobadas = upoCultura.obtenerSolicitudesAprobadasPorUsuario(usuario.getId());
             mensajesSeleccionVoluntario = new ArrayList<>();
             for (SolicitudVoluntariado solicitud : solicitudesAprobadas) {
@@ -92,6 +96,15 @@ public class PrincipalAction extends ActionSupport implements SessionAware {
     public void setMensajesSeleccionVoluntario(List<String> mensajesSeleccionVoluntario) {
         this.mensajesSeleccionVoluntario = mensajesSeleccionVoluntario;
     }
+
+    public List<Integer> getEventosInscritos() {
+        return eventosInscritos;
+    }
+
+    public void setEventosInscritos(List<Integer> eventosInscritos) {
+        this.eventosInscritos = eventosInscritos;
+    }
+    
     
     
 
