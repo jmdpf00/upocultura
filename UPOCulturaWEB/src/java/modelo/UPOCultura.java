@@ -60,7 +60,7 @@ public class UPOCultura {
             return null;
         }
     }
-    
+
     // Metodo para obtener todos los eventos registrados
     public List<Evento> obtenerTodosEventos() {
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -69,7 +69,7 @@ public class UPOCultura {
         s.close();
         return eventos;
     }
-    
+
     // Metodo para crear un nuevo evento
     public void crearEvento(Evento evento) {
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -129,7 +129,7 @@ public class UPOCultura {
         s.close();
         return filas > 0;
     }
-    
+
     // Metodo para obtener todas las publicaciones registradas
     public List<Publicacion> obtenerTodasPublicaciones() {
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -147,7 +147,7 @@ public class UPOCultura {
         tx.commit();
         s.close();
     }
-    
+
     // Metodo para obtener un usuario a traves su ID
     public Usuario obtenerUsuarioPorId(int userId) {
         Session s = HibernateUtil.getSessionFactory().openSession();
@@ -159,7 +159,124 @@ public class UPOCultura {
         return usuario;
     }
 
+    // Metodo para crear una nueva tarea
+    public void crearTarea(TareaVoluntario t) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        s.save(t);
+        tx.commit();
+        s.close();
+    }
 
+    // Metodo para crear una nueva solicitud de voluntariado
+    public void crearSolicitudVoluntario(SolicitudVoluntariado sol) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = s.beginTransaction();
+        s.save(sol);
+        tx.commit();
+        s.close();
+    }
+
+    // Metodo para obtener una lista de los ids de los eventos solicitados por el usuario
+    public List<Integer> obtenerIDsEventoPorUsuario(int idUsuario) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "SELECT s.evento.id FROM SolicitudVoluntariado s WHERE s.usuario.id = :idUsuario";
+        Query query = session.createQuery(sql);
+        query.setParameter("idUsuario", idUsuario);
+        List<Integer> result = query.list();
+        session.close();
+        return result;
+    }
+
+    // Metodo para obtener todas las tareas
+    public List<TareaVoluntario> obtenerTodasTareas() {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("FROM TareaVoluntario");
+        List<TareaVoluntario> tareas = q.list();
+        s.close();
+        return tareas;
+    }
+
+    // Metodo que devuelve solicitudes por id de evento
+    public List<SolicitudVoluntariado> obtenerSolicitudesPorEvento(int idEvento) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "FROM SolicitudVoluntariado s WHERE s.evento.id = :idEvento";
+        List<SolicitudVoluntariado> lista = session.createQuery(sql)
+                .setParameter("idEvento", idEvento)
+                .list();
+        session.close();
+        return lista;
+    }
+
+    // Método que devuelve una tarea por su id
+    public TareaVoluntario obtenerTareaPorID(int idTarea) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String hql = "FROM TareaVoluntario t WHERE t.id = :idTarea";
+        List<TareaVoluntario> lista = session.createQuery(hql)
+                .setParameter("idTarea", idTarea)
+                .list();
+        session.close();
+        return lista.isEmpty() ? null : lista.get(0);
+    }
+
+    public void asignarTareaASolicitud(int idSolicitud, int idTarea) throws Exception {
+        Session session = null;
+        Transaction tx = null;
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+
+            // Cargar tarea
+            TareaVoluntario tarea = (TareaVoluntario)session.get(TareaVoluntario.class, idTarea);
+            if (tarea == null) {
+                throw new Exception("No existe la tarea con id: " + idTarea);
+            }
+            if (tarea.getSolicitudVoluntariado() != null) {
+                throw new Exception("La tarea ya está asignada a una solicitud.");
+            }
+
+            // Cargar solicitud
+            SolicitudVoluntariado solicitud = (SolicitudVoluntariado)session.get(SolicitudVoluntariado.class, idSolicitud);
+            if (solicitud == null) {
+                throw new Exception("No existe la solicitud con id: " + idSolicitud);
+            }
+
+            // Asignar solicitud a tarea
+            tarea.setSolicitudVoluntariado(solicitud);
+            session.update(tarea);
+
+            // Cambiar estado solicitud
+            solicitud.setEstado("aprobada");
+            session.update(solicitud);
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+    
+    // Metodo para obtener solicitudes aprobadas por usuario
+    public List<SolicitudVoluntariado> obtenerSolicitudesAprobadasPorUsuario(int idUsuario) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String sql = "SELECT DISTINCT sv FROM SolicitudVoluntariado sv "
+                    + "JOIN FETCH sv.tareaVoluntarios "
+                    + "WHERE sv.usuario.id = :idUsuario AND sv.estado = 'aprobada'";
+            Query q = s.createQuery(sql);
+            q.setParameter("idUsuario", idUsuario);
+            return q.list();
+        } finally {
+            s.close();
+        }
+    }
 
 
 

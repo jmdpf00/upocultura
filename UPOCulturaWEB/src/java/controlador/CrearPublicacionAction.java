@@ -79,8 +79,6 @@ public class CrearPublicacionAction extends ActionSupport implements SessionAwar
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    
-    
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;

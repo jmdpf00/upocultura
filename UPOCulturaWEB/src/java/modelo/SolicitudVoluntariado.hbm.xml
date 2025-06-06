@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="evento" class="modelo.Evento" fetch="select">
+        <many-to-one name="evento" class="modelo.Evento" fetch="join" lazy="false">
             <column name="id_evento" />
         </many-to-one>
-        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="join" lazy="false">
             <column name="id_usuario" />
         </many-to-one>
         <property name="estado" type="string">
@@ -20,7 +20,7 @@
         <property name="fechaSolicitud" type="date">
             <column name="fecha_solicitud" length="10" />
         </property>
-        <set name="tareaVoluntarios" table="tarea_voluntario" inverse="true" lazy="true" fetch="select">
+        <set name="tareaVoluntarios" table="tarea_voluntario" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="id_solicitud" />
             </key>

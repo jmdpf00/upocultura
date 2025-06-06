@@ -62,5 +62,26 @@
             <result name="input">/crearPublicacion.jsp</result>
         </action>
         
+        <action name="crearTareaForm">
+            <result>/crearTarea.jsp</result>
+        </action>
+        
+        <action name="crearTarea" class="controlador.CrearTareaAction">
+            <result name="success" type="redirectAction">principal</result>
+            <result name="input">/crearTarea.jsp</result>
+        </action>
+        
+        <action name="solicitarSolicitudVoluntario" class="controlador.VoluntarioAction">
+            <result name="success" type="redirectAction">principal</result>
+        </action>
+        
+        <action name="verSolicitudes" class="controlador.SolicitudesEventoAction">
+            <result>/verSolicitudesEvento.jsp</result>
+        </action>
+        
+        <action name="asignarTarea" class="controlador.AsignarTareaAction">
+            <result type="redirectAction">principal</result>
+        </action>
+        
     </package>
 </struts>

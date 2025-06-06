@@ -6,11 +6,11 @@
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/modelo/UPOCultura.java</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/principal.jsp</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/CrearPublicacionAction.java</file>
-            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/crearEvento.jsp</file>
-            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/CrearEventoAction.java</file>
-            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/crearPublicacion.jsp</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/SolicitudesEventoAction.java</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/AsignarTareaAction.java</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/controlador/PrincipalAction.java</file>
             <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/src/java/struts.xml</file>
+            <file>file:/C:/Users/Josema/Documents/NetBeansProjects/UPOCulturaWEB/web/verSolicitudesEvento.jsp</file>
         </group>
     </open-files>
 </project-private>

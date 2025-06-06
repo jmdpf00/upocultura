@@ -12,6 +12,16 @@
             <s:form action="crearEventoForm">
                 <s:submit value="Crear nuevo evento" />
             </s:form>
+            <s:form action="crearTareaForm">
+                <s:submit value="Crear nueva tarea" />
+            </s:form>
+        </s:if>
+        <s:if test="#session.usuario.tipo == 'voluntario'">
+            <s:if test="mensajesSeleccionVoluntario != null && !mensajesSeleccionVoluntario.isEmpty()">
+                    <s:iterator value="mensajesSeleccionVoluntario" var="mensaje">
+                        <p><s:property value="#mensaje" /></p>
+                    </s:iterator>
+            </s:if>
         </s:if>
         <table border="1">
             <thead>
@@ -46,13 +56,30 @@
                                     <s:hidden name="id" value="%{id}" />
                                     <s:submit value="Eliminar" />
                                 </s:form>
+                                <s:form action="verSolicitudes" method="POST" theme="simple">
+                                    <s:hidden name="id" value="%{id}" />
+                                    <s:submit value="Ver solicitudes" />
+                                </s:form>
+                            </td>
+                        </s:if>
+                        <s:if test="#session.usuario.tipo == 'voluntario'">
+                            <td>
+                                <s:if test="!eventosSolicitados.contains(id)">
+                                    <s:form action="solicitarSolicitudVoluntario" method="POST" theme="simple">
+                                        <s:hidden name="id" value="%{id}" />
+                                        <s:submit value="Solicitar voluntariado"/>
+                                    </s:form>
+                                </s:if>
+                                <s:if test="eventosSolicitados.contains(id)">
+                                    <span>Ya has solicitado el voluntariado</span>
+                                </s:if>
                             </td>
                         </s:if>
                     </tr>
                 </s:iterator>
             </tbody>
         </table>
-
+        
         <br/>
         <h2>Listado de Publicaciones</h2>
         <%-- Mostrar botón solo si el usuario es organizador --%>

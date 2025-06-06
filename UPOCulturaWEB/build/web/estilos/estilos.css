@@ -9,12 +9,10 @@ body {
     justify-content: center;
     align-items: center;
 
-    /* Fondo con degradado oscuro + imagen */
     background: linear-gradient(
         rgba(0, 0, 0, 0.6), 
         rgba(0, 0, 0, 0.6)
-    ), 
-    url('../img/fondoppal.jpg') no-repeat center center;
+    );
     background-size: cover;
 }
 
