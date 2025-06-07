@@ -279,6 +279,7 @@ public class UPOCultura {
         }
     }
 
+    // Metodo para comprobar si un usuario está inscrito en un evento
     public boolean estaInscrito(int idUsuario, int idEvento) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -292,6 +293,7 @@ public class UPOCultura {
         }
     }
     
+    // Metodo para inscribir a un asistente a un evento
     public void inscribirAsistente(int idUsuario, int idEvento) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = s.beginTransaction();
@@ -312,6 +314,7 @@ public class UPOCultura {
         }
     }
 
+    // Metodo para obtener los IDs de los eventos en los que está inscrito el usuario
     public List<Integer> obtenerIDsEventoInscritosPorUsuario(int idUsuario) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         try {

@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>Registro de Usuario</title>
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Registro de Usuario</h2>
@@ -11,12 +12,12 @@
         <s:fielderror/>
         <s:actionmessage/>
 
-        <s:form action="registro" method="post">
+        <s:form action="registro" method="POST" cssClass="card-form">
             <s:textfield name="usuario.nombre" label="Nombre" required="true"/>
             <s:textfield name="usuario.email" label="Email" required="true"/>
             <s:password name="usuario.contrasena" label="Contraseña" required="true"/>
 
-            <!-- Aquí usamos el map que devuelve el Action -->
+
             <s:select name="usuario.tipo" label="Tipo" list="tiposUsuario" required="true"/>
 
             <s:submit value="Registrar"/>

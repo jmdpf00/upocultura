@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>Bienvenido a UpoCultura</title>
-        <link rel="stylesheet" href="estilos/estilos.css">
+        <link rel="stylesheet" href="estilos/index.css">
     </head>
     <body>
         <h1>Bienvenido a UpoCultura</h1>

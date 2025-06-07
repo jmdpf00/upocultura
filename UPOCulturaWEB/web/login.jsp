@@ -3,11 +3,12 @@
 <html>
     <head>
         <title>Iniciar Sesión</title>
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Iniciar Sesión</h2>
 
-        <s:form action="login" method="post">
+        <s:form action="login" method="POST" cssClass="card-form">
             <s:textfield name="email" label="Email"/>
             <s:password name="contrasena" label="Contraseña"/>
             <s:submit value="Entrar"/>

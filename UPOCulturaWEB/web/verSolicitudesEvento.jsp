@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>Solicitudes del Evento</title>
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Solicitudes del Evento ID: <s:property value="id" /></h2>
@@ -24,7 +25,7 @@
                             <td><s:property value="#solicitud.fechaSolicitud" /></td>
                             <td><s:property value="#solicitud.estado" /></td>
                             <td>
-                                <s:form action="asignarTarea" method="POST">
+                                <s:form action="asignarTarea" method="POST" cssClass="card-form">
                                     <s:hidden name="idSolicitud" value="%{#solicitud.id}" />
                                     <s:select name="idTarea" list="tareas" 
                                               listKey="id" listValue="descripcion" />

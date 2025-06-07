@@ -3,12 +3,12 @@
 <html>
     <head>
         <title>Crear Evento</title>
-
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Crear Nuevo Evento</h2>
 
-        <s:form action="crearEvento" method="POST">
+        <s:form action="crearEvento" method="POST" cssClass="card-form">
             <s:textfield name="titulo" label="Título" required="true"/>
             <s:textarea name="descripcion" label="Descripción" required="true"/>
             <s:textfield name="ubicacion" label="Ubicación" required="true"/>

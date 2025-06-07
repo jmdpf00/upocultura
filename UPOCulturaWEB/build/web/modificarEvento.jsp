@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>Modificar Evento</title>
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
 
@@ -11,7 +12,7 @@
         <s:form action="principal">
             <s:submit value="Volver a la pagina principal"/>
         </s:form>
-        <s:form action="modificarEvento">
+        <s:form action="modificarEvento" cssClass="card-form">
             <s:hidden name="evento.id" value="%{evento.id}" />       
             <s:textfield name="evento.titulo" label="Título" />
             <s:textarea name="evento.descripcion" label="Descripción" />

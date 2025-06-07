@@ -3,12 +3,12 @@
 <html>
     <head>
         <title>Crear Publicacion</title>
-
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Crear Nueva Publicacion</h2>
 
-        <s:form action="crearPublicacion" method="POST">
+        <s:form action="crearPublicacion" method="POST" cssClass="card-form">
             <s:textfield name="titulo" label="Título" required="true"/>
             <s:textarea name="contenido" label="Contenido" required="true"/>
             <s:textfield name="fechaPublicacion" label="Fecha de Publicacion(yyyy-MM-dd)" required="true"/>

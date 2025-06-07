@@ -3,16 +3,16 @@
 <html>
     <head>
         <title>Eventos - UpoCultura</title>
-        
+        <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
         <h2>Listado de Eventos</h2>
         <%-- Mostrar botón solo si el usuario es organizador --%>
         <s:if test="#session.usuario.tipo == 'organizador'">
-            <s:form action="crearEventoForm">
+            <s:form action="crearEventoForm" cssClass="card-form">
                 <s:submit value="Crear nuevo evento" />
             </s:form>
-            <s:form action="crearTareaForm">
+            <s:form action="crearTareaForm" cssClass="card-form">
                 <s:submit value="Crear nueva tarea" />
             </s:form>
         </s:if>
@@ -100,7 +100,7 @@
         <h2>Listado de Publicaciones</h2>
         <%-- Mostrar botón solo si el usuario es organizador --%>
         <s:if test="#session.usuario.tipo == 'organizador'">
-            <s:form action="crearPublicacionForm">
+            <s:form action="crearPublicacionForm" cssClass="card-form">
                 <s:submit value="Crear nueva publicacion" />
             </s:form>
         </s:if>
@@ -123,7 +123,7 @@
             </tbody>
         </table>
         
-        <s:form action="logout">
+        <s:form action="logout" cssClass="card-form">
             <s:submit value="Cerrar Sesión"/>
         </s:form>
     </body>
